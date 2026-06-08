@@ -1,0 +1,46 @@
+version: "3"
+
+# --- ДОБАВЛЯЕМ СЕКЦИЮ RELOAD ---
+reload:
+  interval: 1s
+  patterns: [".php", ".yaml"]
+  services:
+    http:
+      recursive: true
+      dirs: ["src"]
+      ignore: ["vendor"]
+
+# Настройка RPC для управления воркерами
+rpc:
+  listen: tcp://127.0.0.1:6001
+
+# Настройка PHP-процессов
+server:
+  command: "php src/worker.php"
+  relay: pipes
+
+# HTTP-сервер (входная точка для Nuxt)
+http:
+  address: :8080
+  middleware: ["gzip", "static"]
+  static:
+    dir: "public"
+    forbid: [".php"]
+  pool:
+    num_workers: 2
+    max_jobs: 0
+    allocate_timeout: 60s
+    destroy_timeout: 60s
+
+# Наше Shared Memory (тот самый Redis)
+kv:
+  project_cache:
+    driver: redis
+    config:
+      addrs: ["redis:6379"]
+
+# Логирование для отладки на Fedora
+logs:
+  mode: development
+  level: debug
+  encoding: console
