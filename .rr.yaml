@@ -32,7 +32,7 @@ http:
     allocate_timeout: 60s
     destroy_timeout: 60s
 
-# Наше Shared Memory (тот самый Redis)
+# Shared Memory (Redis)
 kv:
   project_cache:
     driver: redis
