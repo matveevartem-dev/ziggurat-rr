@@ -1,0 +1,12 @@
+# ==============================================================================
+#    [Ziggurat OS] SHARED REPOSITORY ENGINE BASE SPECIFICATION (v1686)
+#    Path: /shared/rr/docker-compose.yml
+# ==============================================================================
+
+services:
+  core-rr:
+    image: alpine:latest
+    # Базовые общие инструкции для легаси рантайма Клиента
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
