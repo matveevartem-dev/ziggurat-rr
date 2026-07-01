@@ -1,6 +1,6 @@
 # ==============================================================================
 #    [Ziggurat OS] SHARED REPOSITORY ENGINE BASE SPECIFICATION (v1686)
-#    Path: /shared/rr/docker-compose.yml
+#    Path: /src/shared/rr/docker-compose.yml
 # ==============================================================================
 
 services:
